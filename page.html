@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1024, initial-scale=1">
+<title>The World Ledger — Tuesday, 24 November 2026</title>
+<style>
+  :root {
+    --paper: #f4f0e5;
+    --paper-deep: #e9e2d2;
+    --ink: #17130e;
+    --muted: #5f5749;
+    --rule: #30281e;
+    --red: #a3261b;
+    --navy: #173a5e;
+    --green: #236b48;
+    --gold: #b07a26;
+    --serif: "Liberation Serif", "Times New Roman", Times, serif;
+    --sans: "Liberation Sans", Helvetica, Arial, sans-serif;
+    --narrow: "Liberation Sans Narrow", "Arial Narrow", Arial, sans-serif;
+    --mono: "Liberation Mono", "Courier New", monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    width: 1024px;
+    height: 1024px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  body {
+    color: var(--ink);
+    background: #d7d0c1;
+    font-family: var(--serif);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .page {
+    width: 1024px;
+    height: 1024px;
+    padding: 10px 18px 8px;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse at 8% 2%, rgba(109, 81, 35, .07), transparent 30%),
+      radial-gradient(ellipse at 95% 92%, rgba(70, 55, 30, .055), transparent 36%),
+      var(--paper);
+    display: flex;
+    flex-direction: column;
+  }
+
+  p, h1, h2, h3 { min-width: 0; }
+
+  .topbar {
+    flex: none;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 3px 0 2px;
+    border-top: 4px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    font: 700 8px/1 var(--sans);
+    letter-spacing: .13em;
+    text-transform: uppercase;
+  }
+
+  .topbar span:nth-child(2) { text-align: center; }
+  .topbar span:last-child { text-align: right; }
+
+  .nameplate {
+    position: relative;
+    flex: none;
+    height: 123px;
+    padding: 5px 0 4px;
+    border-bottom: 6px double var(--ink);
+    text-align: center;
+  }
+
+  .strapline {
+    margin: 0 0 2px;
+    color: var(--muted);
+    font: 700 8px/1.1 var(--sans);
+    letter-spacing: .24em;
+    text-transform: uppercase;
+  }
+
+  .masthead {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: 86px;
+    font-weight: 700;
+    line-height: .78;
+    letter-spacing: -.045em;
+    white-space: nowrap;
+  }
+
+  .dateline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    margin-top: 6px;
+    font: 700 10px/1 var(--sans);
+    letter-spacing: .11em;
+    text-transform: uppercase;
+  }
+
+  .dateline time {
+    display: inline-block;
+    padding: 5px 12px 4px;
+    color: var(--paper);
+    background: var(--red);
+    font-size: 19px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: .075em;
+  }
+
+  .sep { color: #9d9481; }
+
+  main {
+    flex: none;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .lead {
+    flex: none;
+    height: 250px;
+    display: grid;
+    grid-template-columns: minmax(0, 1.58fr) 322px;
+    gap: 22px;
+    padding: 12px 0 11px;
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .lead-copy {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .kicker-line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 7px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #b8ad99;
+    font: 800 8.5px/1 var(--sans);
+    letter-spacing: .16em;
+    text-transform: uppercase;
+  }
+
+  .lead-tag {
+    padding: 4px 8px 3px;
+    color: var(--paper);
+    background: var(--red);
+    letter-spacing: .14em;
+  }
+
+  .lead-place { color: var(--muted); text-align: right; }
+
+  .lead-headline {
+    margin: 0;
+    font-size: 47px;
+    font-weight: 700;
+    line-height: .94;
+    letter-spacing: -.035em;
+    text-wrap: balance;
+  }
+
+  .lead-subhead {
+    margin: 5px 0 6px;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -.015em;
+  }
+
+  .lead-caption {
+    max-width: 58ch;
+    margin: 0;
+    color: #3c352a;
+    font-size: 11.5px;
+    line-height: 1.34;
+  }
+
+  .lead-byline {
+    margin: auto 0 0;
+    padding-top: 5px;
+    border-top: 1px solid #b8ad99;
+    color: var(--muted);
+    font: 700 7.5px/1.1 var(--sans);
+    letter-spacing: .13em;
+    text-transform: uppercase;
+  }
+
+  .lead-art {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 0;
+    padding: 13px 14px 11px;
+    overflow: hidden;
+    color: var(--paper);
+    background:
+      radial-gradient(circle at 84% 12%, rgba(255, 153, 51, .27), transparent 38%),
+      radial-gradient(circle at 12% 92%, rgba(19, 136, 8, .19), transparent 42%),
+      repeating-linear-gradient(0deg, rgba(255, 255, 255, .04) 0 1px, transparent 1px 11px),
+      #17140f;
+    border: 1px solid var(--ink);
+  }
+
+  .lead-art::before {
+    content: "";
+    position: absolute;
+    right: -54px;
+    bottom: -74px;
+    width: 196px;
+    height: 196px;
+    border: 1px solid rgba(244, 240, 229, .18);
+    border-radius: 50%;
+    box-shadow: 0 0 0 24px rgba(244, 240, 229, .045), 0 0 0 52px rgba(244, 240, 229, .03);
+  }
+
+  .lead-art-top,
+  .lead-art-foot {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    color: #d1c6b0;
+    font: 800 7.5px/1.15 var(--sans);
+    letter-spacing: .16em;
+    text-transform: uppercase;
+  }
+
+  .lead-art-top span:first-child { color: #ffb46a; }
+
+  .lead-art-top svg {
+    width: 25px;
+    height: 16px;
+    flex: none;
+  }
+
+  .lead-art-centre {
+    position: relative;
+    z-index: 1;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2px 0 3px;
+  }
+
+  .lead-art-kicker {
+    color: #d8cbb4;
+    font: 800 8px/1 var(--sans);
+    letter-spacing: .28em;
+    text-transform: uppercase;
+  }
+
+  .lead-vi {
+    margin: -4px 0 -10px;
+    font-family: var(--serif);
+    font-size: 132px;
+    font-weight: 700;
+    line-height: .9;
+    letter-spacing: -.10em;
+    color: var(--paper);
+    text-shadow: 6px 6px 0 rgba(163, 38, 27, .58);
+  }
+
+  .lead-art-line {
+    margin: 7px 0 5px;
+    border-top: 1px solid rgba(244, 240, 229, .42);
+  }
+
+  .lead-art-caption {
+    max-width: 29ch;
+    margin: 0;
+    color: #e4dac7;
+    font: 700 9px/1.22 var(--sans);
+    letter-spacing: .02em;
+    text-transform: uppercase;
+  }
+
+  .lead-stripes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    height: 5px;
+    margin-top: 5px;
+    border: 1px solid rgba(244, 240, 229, .3);
+  }
+
+  .lead-stripes i:nth-child(1) { background: #ff9933; }
+  .lead-stripes i:nth-child(2) { background: var(--paper); }
+  .lead-stripes i:nth-child(3) { background: #138808; }
+
+  .lead-art-foot {
+    display: block;
+    padding-top: 1px;
+  }
+
+  .lead-art-foot .foot-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .lead-art-foot span:last-child { color: #ffb46a; }
+
+  .section-head {
+    flex: none;
+    height: 34px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    gap: 6px 16px;
+    padding: 6px 0 3px;
+    border-top: 4px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .section-head h2 {
+    margin: 0;
+    font: 900 23px/1 var(--sans);
+    letter-spacing: .075em;
+    text-transform: uppercase;
+  }
+
+  .section-head span {
+    color: var(--muted);
+    font: 700 8px/1.1 var(--sans);
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    text-align: right;
+  }
+
+  .stories {
+    flex: none;
+    height: 461px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: repeat(4, 103px) 49px;
+    border-left: 1px solid var(--rule);
+  }
+
+  .story {
+    display: grid;
+    grid-template-columns: 38px minmax(0, 1fr);
+    gap: 9px;
+    padding: 8px 10px 7px;
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    overflow: hidden;
+  }
+
+  .story-body { min-width: 0; }
+
+  .story-kicker {
+    margin: 0 0 3px;
+    color: var(--red);
+    font: 800 8.2px/1 var(--sans);
+    letter-spacing: .105em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .story h3 {
+    margin: 0 0 3px;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.01;
+    letter-spacing: -.018em;
+    overflow-wrap: break-word;
+  }
+
+  .story p {
+    margin: 0;
+    color: #443d31;
+    font-size: 9.1px;
+    line-height: 1.18;
+  }
+
+  .mark {
+    position: relative;
+    width: 38px;
+    height: 38px;
+    flex: none;
+    overflow: hidden;
+    border: 1px solid var(--ink);
+    background: var(--paper-deep);
+  }
+
+  .m-chip {
+    display: grid;
+    place-items: center;
+    background: var(--ink);
+  }
+
+  .m-chip::before {
+    content: "";
+    position: absolute;
+    inset: 6px;
+    border: 1px solid rgba(244, 240, 229, .5);
+  }
+
+  .m-chip span {
+    position: relative;
+    z-index: 1;
+    color: #ffb36b;
+    font: 900 11px/1 var(--sans);
+    letter-spacing: .12em;
+  }
+
+  .m-spark { background: #faf6ea; }
+
+  .m-spark i {
+    position: absolute;
+    inset: 8px 5px 6px;
+    background: linear-gradient(to top, #216c49, rgba(33, 108, 73, .1));
+    clip-path: polygon(0 82%, 14% 69%, 28% 76%, 42% 43%, 56% 55%, 70% 24%, 84% 37%, 100% 8%, 100% 100%, 0 100%);
+  }
+
+  .m-spark::after {
+    content: "";
+    position: absolute;
+    right: 5px;
+    bottom: 14px;
+    left: 5px;
+    border-top: 1px solid rgba(23, 19, 14, .18);
+  }
+
+  .m-yemen {
+    background: linear-gradient(to bottom, #ce1126 0 33.33%, #f4f0e5 33.33% 66.66%, #17130e 66.66%);
+  }
+
+  .m-iran {
+    background: linear-gradient(to bottom, #239f40 0 33.33%, #f4f0e5 33.33% 66.66%, #da0000 66.66%);
+  }
+
+  .m-iran::after {
+    content: "\266A";
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    color: #17130e;
+    font: 700 19px/1 var(--serif);
+    text-shadow: 0 0 4px #f4f0e5, 0 0 8px #f4f0e5;
+  }
+
+  .m-summit {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background: #f4f0e5;
+  }
+
+  .m-summit i {
+    display: grid;
+    place-items: end center;
+    padding-bottom: 4px;
+    color: #fff;
+    font: 800 5.6px/1 var(--sans);
+    font-style: normal;
+    letter-spacing: .03em;
+  }
+
+  .m-summit i:nth-child(1) { background: #c8102e; }
+  .m-summit i:nth-child(2) { background: #1f4fa1; }
+  .m-summit i:nth-child(3) { background: #1e2e4a; }
+
+  .m-terminal {
+    display: flex;
+    align-items: flex-end;
+    padding: 0 0 6px 7px;
+    background: #17140f;
+  }
+
+  .m-terminal::before {
+    content: "";
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 3.5px;
+    height: 3.5px;
+    border-radius: 50%;
+    background: #e05a4e;
+    box-shadow: 8px 0 0 #e0a94e, 16px 0 0 #62a269;
+  }
+
+  .m-terminal::after {
+    content: "";
+    position: absolute;
+    top: 15px;
+    right: 7px;
+    left: 7px;
+    border-top: 1px solid rgba(255, 255, 255, .12);
+  }
+
+  .m-terminal span {
+    color: #ffb36b;
+    font: 800 11px/1 var(--mono);
+    letter-spacing: .02em;
+  }
+
+  .m-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    background: #0a63d8;
+  }
+
+  .m-meta b {
+    color: #f4f0e5;
+    font: 900 19px/1 var(--sans);
+    letter-spacing: -.06em;
+  }
+
+  .m-meta i {
+    position: absolute;
+    right: 7px;
+    bottom: 6px;
+    width: 2.5px;
+    height: 9px;
+    background: #f4f0e5;
+  }
+
+  .m-meta i + i { right: 3px; }
+
+  .m-court {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 2.5px;
+    padding: 6px 5px 6px;
+    background: #f7f2e5;
+  }
+
+  .m-court::before {
+    content: "";
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    left: 4px;
+    height: 9px;
+    background: var(--ink);
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  }
+
+  .m-court::after {
+    content: "";
+    position: absolute;
+    right: 3px;
+    bottom: 4px;
+    left: 3px;
+    height: 1.5px;
+    background: var(--ink);
+  }
+
+  .m-court i {
+    position: relative;
+    width: 4px;
+    height: 17px;
+    margin-top: 14px;
+    background: var(--ink);
+  }
+
+  .m-orbit {
+    background: radial-gradient(circle at 50% 50%, #24303a, #101418 75%);
+  }
+
+  .m-orbit::before {
+    content: "";
+    position: absolute;
+    top: 8px;
+    right: 4px;
+    bottom: 8px;
+    left: 4px;
+    border: 1px solid rgba(244, 240, 229, .45);
+    border-radius: 50%;
+    transform: rotate(-24deg) scaleY(.55);
+  }
+
+  .m-orbit .planet {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 17px;
+    height: 17px;
+    margin: -8.5px 0 0 -8.5px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #d8c9a8, #796b51 65%, #3b342a);
+    box-shadow: inset -3px -3px 7px rgba(0, 0, 0, .45);
+  }
+
+  .m-orbit .craft {
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #ffb36b;
+    box-shadow: 0 0 0 2px rgba(255, 179, 107, .22);
+  }
+
+  .m-uk {
+    background-color: #012169;
+    background-image:
+      linear-gradient(90deg, transparent 0 42%, #fff 42% 58%, transparent 58%),
+      linear-gradient(0deg, transparent 0 42%, #fff 42% 58%, transparent 58%),
+      linear-gradient(90deg, transparent 0 46%, #c8102e 46% 54%, transparent 54%),
+      linear-gradient(0deg, transparent 0 46%, #c8102e 46% 54%, transparent 54%),
+      linear-gradient(45deg, transparent 0 44%, #fff 44% 47%, #c8102e 47% 51%, #fff 51% 54%, transparent 54%),
+      linear-gradient(-45deg, transparent 0 44%, #fff 44% 47%, #c8102e 47% 51%, #fff 51% 54%, transparent 54%);
+    background-size: 100% 100%;
+  }
+
+  .m-f1 {
+    background: repeating-conic-gradient(#17140f 0 25%, #f4f0e5 0 50%) 0 0 / 10px 10px;
+  }
+
+  .m-f1::after {
+    content: "F1";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 2px 4px;
+    border: 1px solid var(--ink);
+    color: #b51c16;
+    background: var(--paper);
+    font: 900 8px/1 var(--sans);
+    transform: translate(-50%, -50%);
+  }
+
+  .m-globe {
+    display: grid;
+    place-items: center;
+    background: #e8e3d7;
+  }
+
+  .m-globe::before {
+    content: "";
+    width: 27px;
+    height: 27px;
+    border-radius: 50%;
+    background:
+      linear-gradient(90deg, transparent 46%, rgba(244, 240, 229, .35) 46% 54%, transparent 54%),
+      linear-gradient(0deg, transparent 46%, rgba(244, 240, 229, .35) 46% 54%, transparent 54%),
+      radial-gradient(circle at 35% 30%, #7ab6a7, #2d675e 60%, #173e3b);
+    box-shadow: inset -4px -4px 9px rgba(0, 0, 0, .35);
+  }
+
+  .m-globe::after {
+    content: "\00D7";
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    color: #f4f0e5;
+    font: 900 22px/1 var(--sans);
+    text-shadow: 0 1px 4px rgba(0, 0, 0, .65);
+  }
+
+  .m-id {
+    background: linear-gradient(to bottom, #d52b1e 0 50%, #f4f0e5 50%);
+  }
+
+  .m-id::before {
+    content: "";
+    position: absolute;
+    top: 9px;
+    left: 12px;
+    width: 14px;
+    height: 22px;
+    border-radius: 0 100% 0 100%;
+    background: #1d6b45;
+    box-shadow: inset -3px -3px 0 rgba(0, 0, 0, .12);
+    transform: rotate(-30deg);
+  }
+
+  .m-id::after {
+    content: "";
+    position: absolute;
+    top: 25px;
+    left: 20px;
+    width: 1px;
+    height: 7px;
+    background: #1d6b45;
+    transform: rotate(20deg);
+  }
+
+  .story-wide {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 38px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 12px;
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    background: rgba(233, 226, 210, .42);
+  }
+
+  .wide-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    align-items: baseline;
+    gap: 14px;
+  }
+
+  .story-wide .story-kicker { margin: 0; }
+  .story-wide h3 { margin: 0; font-size: 20px; line-height: 1.01; }
+  .story-wide p { margin: 0; font-size: 9.2px; line-height: 1.2; }
+
+  .wide-flag {
+    color: var(--red);
+    font: 800 8px/1 var(--sans);
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .briefs {
+    flex: none;
+    height: 110px;
+    margin-top: 0;
+    border-top: 4px solid var(--ink);
+  }
+
+  .briefs-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px 12px;
+    height: 27px;
+    padding: 5px 0 2px;
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .briefs-head h2 {
+    margin: 0;
+    font: 900 20px/1 var(--sans);
+    letter-spacing: .075em;
+    text-transform: uppercase;
+  }
+
+  .briefs-head span {
+    color: var(--muted);
+    font: 700 7.5px/1.1 var(--sans);
+    letter-spacing: .13em;
+    text-transform: uppercase;
+  }
+
+  .brief-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: repeat(2, 39.5px);
+    height: 79px;
+    border-left: 1px solid var(--rule);
+  }
+
+  .brief {
+    position: relative;
+    margin: 0;
+    padding: 6px 10px 5px 22px;
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    color: #3e382d;
+    font-size: 9.3px;
+    line-height: 1.2;
+    overflow: hidden;
+  }
+
+  .brief::before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 9px;
+    width: 5px;
+    height: 5px;
+    background: var(--brief, var(--red));
+  }
+
+  .brief:nth-child(2) { --brief: var(--navy); }
+  .brief:nth-child(3) { --brief: var(--gold); }
+  .brief:nth-child(4) { --brief: var(--green); }
+  .brief:nth-child(5) { --brief: #7d3f73; }
+  .brief:nth-child(6) { --brief: #1d6b45; }
+
+  .brief strong {
+    font-family: var(--sans);
+    font-size: 7.6px;
+    letter-spacing: .075em;
+    text-transform: uppercase;
+  }
+
+  .footer {
+    flex: none;
+    margin-top: auto;
+    height: 12px;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding-top: 3px;
+    border-top: 1px solid var(--ink);
+    color: var(--muted);
+    font: 700 7.4px/1.05 var(--sans);
+    letter-spacing: .075em;
+    text-transform: uppercase;
+    overflow: hidden;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="topbar" aria-label="Edition information">
+    <span>Vol. CXVIII · No. 8,412</span>
+    <span>Global edition · Asia · Americas · Europe · Mideast</span>
+    <span>Price $4.00</span>
+  </div>
+
+  <header class="nameplate">
+    <p class="strapline">Independent journalism since 1908</p>
+    <h1 class="masthead">THE WORLD LEDGER</h1>
+    <div class="dateline">
+      <time datetime="2026-11-24">Tuesday, 24 November 2026</time>
+      <span class="sep" aria-hidden="true">·</span>
+      <span>World edition</span>
+      <span class="sep" aria-hidden="true">·</span>
+      <span>Final</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="lead" aria-labelledby="lead-headline">
+      <div class="lead-copy">
+        <div class="kicker-line">
+          <span class="lead-tag">Lead story</span>
+          <span class="lead-place">India · Gaming</span>
+        </div>
+        <h2 class="lead-headline" id="lead-headline">Grand Theft Auto VI fever grips India</h2>
+        <p class="lead-subhead">Gaming cafes packed, offices declare holidays for launch week</p>
+        <p class="lead-caption">GTA VI was released this week after a 13-year wait. Gaming cafes are packed and offices have declared launch-week holidays, reports from India said.</p>
+        <p class="lead-byline">From our India desk · New Delhi</p>
+      </div>
+
+      <div class="lead-art" aria-hidden="true">
+        <div class="lead-art-top">
+          <span>Grand Theft Auto VI</span>
+          <svg viewBox="0 0 25 16" fill="none" stroke="#d1c6b0" stroke-width="1.25">
+            <path d="M3.2 5.5h18.6c1.4 0 2.3 1.2 1.9 2.6l-1 4.2c-.3 1.2-1.3 1.9-2.5 1.9h-2.1c-.8 0-1.4-.3-1.9-.9l-1.1-1.4h-5.2l-1.1 1.4c-.5.6-1.1.9-1.9.9H5.8c-1.2 0-2.2-.7-2.5-1.9l-1-4.2C2 6.7 2.9 5.5 4.3 5.5"/>
+            <path d="M7 8.6v3M5.5 10.1h3"/>
+            <circle cx="17.1" cy="9.2" r=".9" fill="#d1c6b0" stroke="none"/>
+            <circle cx="19.2" cy="11.1" r=".9" fill="#d1c6b0" stroke="none"/>
+          </svg>
+        </div>
+        <div class="lead-art-centre">
+          <div class="lead-art-kicker">After a 13-year wait</div>
+          <div class="lead-vi">VI</div>
+          <div class="lead-art-line"></div>
+          <p class="lead-art-caption">Launch week · India</p>
+        </div>
+        <div class="lead-art-foot">
+          <div class="foot-row"><span>India</span><span>24 Nov 2026</span></div>
+          <div class="lead-stripes"><i></i><i></i><i></i></div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="top-stories-heading">
+      <div class="section-head">
+        <h2 id="top-stories-heading">Top stories</h2>
+        <span>13 dispatches · Tuesday, 24 November 2026</span>
+      </div>
+
+      <div class="stories">
+        <article class="story">
+          <div class="mark m-chip" aria-hidden="true"><span>AI</span></div>
+          <div class="story-body">
+            <p class="story-kicker">Washington · AI</p>
+            <h3>US to blacklist Megaspeed</h3>
+            <p>Asian AI firm faces blacklist over Nvidia scandal; Trump said “I made the deal” to reinstall Jensen Huang as CEO.</p>
+          </div>
+        </article>
+
+        <article class="story">
+          <div class="mark m-spark" aria-hidden="true"><i></i></div>
+          <div class="story-body">
+            <p class="story-kicker">New York · Markets</p>
+            <h3>Wall Street jumps as Huang returns</h3>
+            <p>US stocks rallied as Jensen Huang returned as Nvidia chief executive, market reports said.</p>
+          </div>
+        </article>
+
+        <article class="story">
+          <div class="mark m-yemen" aria-hidden="true"></div>
+          <div class="story-body">
+            <p class="story-kicker">Yemen · Conflict</p>
+            <h3>Yemen: Saudi attack kills 17, Houthis say</h3>
+            <p>The Houthi group blamed a Saudi attack for the deaths, according to reports.</p>
+          </div>
+        </article>
+
+        <article class="story">
+          <div class="mark m-iran" aria-hidden="true"></div>
+          <div class="story-body">
+            <p class="story-kicker">Iran · Justice</p>
+            <h3>Iran lashes singer over hijab-less concert</h3>
+            <p>Reports said the singer received dozens of lashes over the concert.</p>
+          </div>
+        </article>
+
+        <article class="story">
+          <div class="mark m-summit" aria-hidden="true"><i>CN</i><i>RU</i><i>US</i></div>
+          <div class="story-body">
+            <p class="story-kicker">Diplomacy · Comment</p>
+            <h3>Xi-Trump-Putin summit: uneasy truth</h3>
+            <p>A commentary on the bargains behind great-power diplomacy.</p>
+          </div>
+        </article>
+
+        <article class="story">
+          <div class="mark m-terminal" aria-hidden="true"><span>&gt;_</span></div>
+          <div class="story-body">
+            <p class="story-kicker">Technology · AI</p>
+            <h3>Anthropic launches Claude Ship</h3>
+            <p>The company says the tool helps developers ship code faster.</p>
+          </div>
+        </article>
+
+        <article class="story">
+          <div class="mark m-meta" aria-hidden="true"><b>M</b><i></i><i></i></div>
+          <div class="story-body">
+            <p class="story-kicker">Menlo Park · Business</p>
+            <h3>Meta pauses Class C share issuance</h3>
+            <p>The pause comes amid a shareholder lawsuit, the company said.</p>
+          </div>
+        </article>
+
+        <article class="story">
+          <div class="mark m-court" aria-hidden="true"><i></i><i></i><i></i></div>
+          <div class="story-body">
+            <p class="story-kicker">Albany · Law</p>
+            <h3>Court: no liability for Buffalo shooting</h3>
+            <p>New York’s highest court ruled social media firms are not liable, reports said.</p>
+          </div>
+        </article>
+
+        <article class="story">
+          <div class="mark m-orbit" aria-hidden="true"><span class="planet"></span><span class="craft"></span></div>
+          <div class="story-body">
+            <p class="story-kicker">Space · Mercury</p>
+            <h3>BepiColombo ‘on track’ despite glitch</h3>
+            <p>The European Space Agency says the Mercury mission remains on course.</p>
+          </div>
+        </article>
+
+        <article class="story">
+          <div class="mark m-uk" aria-hidden="true"></div>
+          <div class="story-body">
+            <p class="story-kicker">London · Football</p>
+            <h3>UK to host 2035 Women’s World Cup</h3>
+            <p>Fifa confirmed the UK as host of the 2035 tournament.</p>
+          </div>
+        </article>
+
+        <article class="story">
+          <div class="mark m-f1" aria-hidden="true"></div>
+          <div class="story-body">
+            <p class="story-kicker">Las Vegas · Motorsport</p>
+            <h3>F1 hails Las Vegas Grand Prix</h3>
+            <p>Formula 1 cited a sold-out crowd and a record number of overtakes.</p>
+          </div>
+        </article>
+
+        <article class="story">
+          <div class="mark m-globe" aria-hidden="true"></div>
+          <div class="story-body">
+            <p class="story-kicker">Climate · Comment</p>
+            <h3>COP climate talks collapse</h3>
+            <p>A commentary describes a divided world and no deal at the last minute.</p>
+          </div>
+        </article>
+
+        <article class="story story-wide">
+          <div class="mark m-id" aria-hidden="true"></div>
+          <div class="wide-body">
+            <div>
+              <p class="story-kicker">Jakarta · Land</p>
+              <h3>Indonesia weighs 12m-hectare farm plan</h3>
+            </div>
+            <p>Degraded land could become food and biofuel farms, the government is considering, reports said.</p>
+          </div>
+          <span class="wide-flag">Asia</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="briefs" aria-labelledby="briefs-heading">
+      <div class="briefs-head">
+        <h2 id="briefs-heading">World in brief</h2>
+        <span>Six more dispatches · 24 November 2026</span>
+      </div>
+      <div class="brief-grid">
+        <p class="brief"><strong>Football</strong> Everton’s Moyes sees special night ruined by heavy defeat at Brentford.</p>
+        <p class="brief"><strong>Asian Champions League</strong> Esteghlal draw ends Al-Ain’s perfect start.</p>
+        <p class="brief"><strong>Myanmar</strong> UK sanctions top military leaders after Rohingya genocide ruling.</p>
+        <p class="brief"><strong>Gaza</strong> Israeli attacks have turned Gaza into a ‘toxic wasteland’, Oxfam says.</p>
+        <p class="brief"><strong>Washington</strong> White House Christmas tree welcomed by First Lady Melania Trump.</p>
+        <p class="brief"><strong>Markets</strong> Singapore retail investors get more ways to buy gold amid volatility.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Contested claims attributed · Commentary labeled</span>
+    <span>All dispatches dated Tuesday, 24 November 2026</span>
+  </footer>
+</div>
+</body>
+</html>
